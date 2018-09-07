@@ -1,7 +1,19 @@
 #!/bin/bash
 
 set -e
+AZ_REPO=$(lsb_release -cs)
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
+    sudo tee /etc/apt/sources.list.d/azure-cli.list
 
+curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+
+sudo apt-get install apt-transport-https
+sudo apt-get update && sudo apt-get install azure-cli
+
+echo "Checking Azure CLI Version"
+az -v
+echo $AZURE_USER
+az login -u $AZURE_USER -p $AZURE_PASSWORD
 
 git clone https://github.com/harshvkarn/litmus.git
 cd litmus
@@ -10,4 +22,4 @@ cd k8s/azure
 
 cp atulabhi/e2e-azure/azoebs_aks_name/oebs_aks_name .
 
-ansible-playbook delete-k8s-cluster.yml
+ansible-playbook delete-k8s-cluster.yml --extra-vars "azure_username=$AZURE_USER azure_password=$AZURE_PASSWORD"
