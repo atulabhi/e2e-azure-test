@@ -23,6 +23,7 @@ openebs-deploy:
     - azure-cluster
   script: 
    - echo "deploying OpenEBS on Azure"
+   - ls
    - chmod 775 ./script/infra-setup
    - ./script/infra-setup
   

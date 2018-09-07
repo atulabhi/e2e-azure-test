@@ -4,6 +4,8 @@ set -e
 #set-up EYE on client
 mkdir ~/.kube
 cp  azoebs_aks_name/config ~/.kube/config
+mkdir azure
+cp azoebs_aks_name/config azure/
 echo " deploying Aggrigrator and Forwarder on client"
 wget https://raw.githubusercontent.com/openebs/e2e-infrastructure/master/production/efk-client/playbook/efk-vars.yml
 wget https://raw.githubusercontent.com/openebs/e2e-infrastructure/master/production/efk-client/playbook/efk.yml
