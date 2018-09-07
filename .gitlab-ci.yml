@@ -1,4 +1,4 @@
-stages:
+zstages:
   - cluster-setup
   - infra-setup
   - stateful-apps-deploy
@@ -73,7 +73,7 @@ Litmus-Chaos:
 Litmus-Chaos-cstor:
   image: atulabhi/kops:v8
   dependencies:
-    - openebs-aws-deploy
+    - openebs-deploy
   stage: Litmus-chaos-testing
   script:
    - echo " Introducing-Chaos"
