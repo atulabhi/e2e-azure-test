@@ -1,4 +1,4 @@
-zstages:
+stages:
   - cluster-setup
   - infra-setup
   - stateful-apps-deploy
