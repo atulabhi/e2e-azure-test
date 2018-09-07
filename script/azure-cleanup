@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+
+git clone https://github.com/harshvkarn/litmus.git
+cd litmus
+git checkout azure-support
+cd k8s/azure
+
+cp atulabhi/e2e-azure/oebs_aks_name/oebs_aks_name .
+
+ansible-playbook delete-k8s-cluster.yml

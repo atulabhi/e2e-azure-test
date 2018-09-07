@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+echo "Setup azure cluster"
+git clone https://github.com/harshvkarn/litmus.git
+cd litmus
+git checkout azure-support
+cd k8s/azure
+echo "creating  cluster"
+
+ansible-playbook create-k8s-cluster.yml -v --extra-vars "azure_username=$AZURE_USER azure_password=$AZURE_PASSWORD"
+
+sleep 30
+kubectl get nodes
+
+wget https://raw.githubusercontent.com/openebs/litmus/master/hack/rbac.yaml
+kubectl apply -f rbac.yaml
+
+mkdir oebs_aks_name
+cat ~/.kube/config > /oebs_aks_name/admin.conf
+cat ~/.kube/config > /oebs_aks_name/config
+ 
+kubectl create configmap kubeconfig --from-file=oebs_aks_name/admin.conf -n litmus
