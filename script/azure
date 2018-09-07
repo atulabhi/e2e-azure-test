@@ -29,8 +29,8 @@ kubectl get nodes
 wget https://raw.githubusercontent.com/openebs/litmus/master/hack/rbac.yaml
 kubectl apply -f rbac.yaml
 
-mkdir oebs_aks_name
-cat ~/.kube/config > /oebs_aks_name/admin.conf
-cat ~/.kube/config > /oebs_aks_name/config
+mkdir azoebs_aks_name
+cat ~/.kube/config > /azoebs_aks_name/admin.conf
+cat ~/.kube/config > /azoebs_aks_name/config
  
 kubectl create configmap kubeconfig --from-file=oebs_aks_name/admin.conf -n litmus
