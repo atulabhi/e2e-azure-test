@@ -43,6 +43,6 @@ cat ~/.kube/config > /atulabhi/e2e-azure/azoebs_aks_name/config
 #copy cluster name to artifact
 pwd
 tree ../
-cat oebs_aks_name > /atulabhi/e2e-azure/azoebs_aks_name/oebs_aks_name
+cat /atulabhi/e2e-azure/litmus/k8s/azure/oebs_aks_name > /atulabhi/e2e-azure/azoebs_aks_name/oebs_aks_name
  
 kubectl create configmap kubeconfig --from-file=/atulabhi/e2e-azure/azoebs_aks_name/admin.conf -n litmus
