@@ -20,6 +20,6 @@ cd litmus
 git checkout azure-support
 cd k8s/azure
 
-cp atulabhi/e2e-azure/azoebs_aks_name/oebs_aks_name .
+cp /atulabhi/e2e-azure/azoebs_aks_name/oebs_aks_name .
 
 ansible-playbook delete-k8s-cluster.yml --extra-vars "azure_username=$AZURE_USER azure_password=$AZURE_PASSWORD"
