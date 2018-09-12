@@ -30,7 +30,7 @@ wget https://raw.githubusercontent.com/openebs/litmus/master/hack/rbac.yaml
 kubectl apply -f rbac.yaml
 
 cat ~/.kube/config 
-
+cd ../../..
 echo $KUBECONFIG
 
 mkdir azoebs_aks_name
