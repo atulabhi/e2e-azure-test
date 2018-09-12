@@ -86,7 +86,7 @@ Litmus-Chaos-cstor:
 
 
 
-cleanup-aws:
+cleanup-azure:
   when: always
   image: atulabhi/kops:v8
   dependencies:

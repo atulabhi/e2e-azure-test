@@ -10,6 +10,9 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 
+#installing Tree
+sudo apt install tree
+
 echo "Checking Azure CLI Version"
 az -v
 echo $AZURE_USER
@@ -37,5 +40,9 @@ mkdir azoebs_aks_name
 
 cat ~/.kube/config > /atulabhi/e2e-azure/azoebs_aks_name/admin.conf
 cat ~/.kube/config > /atulabhi/e2e-azure/azoebs_aks_name/config 
+#copy cluster name to artifact
+pwd
+tree ../
+cat oebs_aks_name > /atulabhi/e2e-azure/azoebs_aks_name/oebs_aks_name
  
 kubectl create configmap kubeconfig --from-file=/atulabhi/e2e-azure/azoebs_aks_name/admin.conf -n litmus
