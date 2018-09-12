@@ -35,7 +35,7 @@ echo $KUBECONFIG
 
 mkdir azoebs_aks_name
 
-cat ~/.kube/config > atulabhi/e2e-azure/azoebs_aks_name/admin.conf
-cat ~/.kube/config > atulabhi/e2e-azure/azoebs_aks_name/config 
+cat ~/.kube/config > azoebs_aks_name/admin.conf
+cat ~/.kube/config > azoebs_aks_name/config 
  
 kubectl create configmap kubeconfig --from-file=azoebs_aks_name/admin.conf -n litmus
