@@ -5,9 +5,9 @@ set -e
 ls 
 pwd
 mkdir ~/.kube
-cp  azoebs_aks_name/config ~/.kube/config
+cp  /atulabhi/e2e-azure/azoebs_aks_name/config ~/.kube/config
 mkdir azure
-cp azoebs_aks_name/config azure/
+cp /atulabhi/e2e-azure/azoebs_aks_name/config azure/
 echo " deploying Aggrigrator and Forwarder on client"
 wget https://raw.githubusercontent.com/openebs/e2e-infrastructure/master/production/efk-client/playbook/efk-vars.yml
 wget https://raw.githubusercontent.com/openebs/e2e-infrastructure/master/production/efk-client/playbook/efk.yml
