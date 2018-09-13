@@ -6,6 +6,7 @@ echo "Packet-Cleanup"
 mkdir ~/.kube ~/.ssh
 cp -r packet/.kube/. ~/.kube/
 cp -r packet/cluster/ssh/. ~/.ssh/
+cp packet/cluster/device_id /tmp/packet/
 export PACKET_API_TOKEN=$packet_api_token
 mkdir cluster && cd cluster #remove this with litmus
 git clone https://github.com/chandankumar4/litmus.git
