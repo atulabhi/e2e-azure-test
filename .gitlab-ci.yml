@@ -10,6 +10,7 @@ azure-cluster:
   stage: cluster-setup
   script: 
     - python -m pip install packet-python
+    - mkdir ~/.ssh
     - echo -e "Host *\nStrictHostKeyChecking no" > ~/.ssh/config
     - chmod 755 ./script/packet
     - ./script/packet
