@@ -11,7 +11,7 @@ azure-cluster:
   script: 
     - pip install python packet-python
     - echo -e "Host *\nStrictHostKeyChecking no" > ~/.ssh/config
-    - chmod 755 ./script/azure
+    - chmod 755 ./script/packet
     - ./script/packet
 
   artifacts:
