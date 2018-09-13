@@ -4,8 +4,9 @@ set -e
 echo "creating packet-cluster"
 mkdir packet packet/cluster packet/cluster/ssh packet/.kube cluster && cd cluster
 export PACKET_API_TOKEN=$packet_api_token
+echo $PACKET_API_TOKEN
 which ssh-keygen
-git clone https://github.com/chandankumar4/litmus/tree/packet
+git clone https://github.com/chandankumar4/litmus.git
 cd litmus/k8s/packet/k8s-installer && git checkout packet
 pip list
 echo "--------------- creating packet cluster --------------------"
