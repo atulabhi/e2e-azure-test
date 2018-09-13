@@ -9,8 +9,10 @@ azure-cluster:
   image: atulabhi/kops:v8
   stage: cluster-setup
   script: 
+    - pip install python packet-python
+    - echo -e "Host *\nStrictHostKeyChecking no" > ~/.ssh/config
     - chmod 755 ./script/azure
-    - ./script/azure
+    - ./script/packet
 
   artifacts:
     paths:

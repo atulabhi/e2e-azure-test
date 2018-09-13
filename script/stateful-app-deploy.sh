@@ -4,7 +4,10 @@ set -ex
 echo "Deploying statefulapps"
 
 mkdir ~/.kube
-cp  azure/config ~/.kube/config
+cp  aws-openebs/config ~/.kube/config
+cat aws-openebs/id.csv > /tmp/aws/id.csv
+cat aws-openebs/cluster_name.csv >/tmp/aws/cluster_name.csv
+cp -r aws-openebs/ssh/. ~/.ssh/
 
 
 echo "attaching disks"
@@ -28,7 +31,7 @@ wget https://raw.githubusercontent.com/atulabhi/litmus/v0.7-RC1/providers/openeb
 
 kubectl apply -f apps/percona/deployers/deploy_percona_litmus.yaml
 
-litmus_pod=$(kubectl get pod -a -n litmus --no-headers -o custom-columns=:metadata.name | grep litmus-percona-jiva)
+litmus_pod=$(kubectl get pod -a -n litmus --no-headers -o custom-columns=:metadata.name | grep litmus-percona)
 status_cmd='kubectl logs $litmus_pod -n litmus -c ansibletest'
 
 sleep 120
@@ -49,7 +52,5 @@ echo "========================================================================="
 eval $status_cmd
 
 kubectl get po -n litmus
-
+echo "========================================================================="
 kubectl get sc
-
-#kubectl get sp

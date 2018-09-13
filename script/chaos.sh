@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -ex
-
 sleep 120
  
 litmus_pod=$(kubectl get pod -a -n litmus --no-headers -o custom-columns=:metadata.name | grep openebs-volume-replica-failure)

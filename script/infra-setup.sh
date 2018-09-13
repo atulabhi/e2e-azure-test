@@ -1,13 +1,11 @@
 #!/bin/bash
 set -e
-#########
+
 #set-up EYE on client
-ls 
-pwd
-mkdir ~/.kube
-cp  /atulabhi/e2e-azure/azoebs_aks_name/config ~/.kube/config
-mkdir azure
-cp /atulabhi/e2e-azure/azoebs_aks_name/config azure/
+
+echo "set-up EYE on client"
+mkdir ~/.kube packet-openebs packet-openebs/cluster 
+cp -r packet/.kube/. ~/.kube/
 echo " deploying Aggrigrator and Forwarder on client"
 wget https://raw.githubusercontent.com/openebs/e2e-infrastructure/master/production/efk-client/playbook/efk-vars.yml
 wget https://raw.githubusercontent.com/openebs/e2e-infrastructure/master/production/efk-client/playbook/efk.yml
@@ -22,15 +20,14 @@ echo "***************************************"
 ###########
 
 # Deploy OpenEBS
-#mkdir azure
-#cp azoebs_aks_name/config azure/
 
+echo "deploying OpenEBS"
+
+cp -r packet/cluster/. packet-openebs/cluster
 wget https://raw.githubusercontent.com/atulabhi/litmus/v0.7-RC1/providers/openebs/installers/operator/master/litmusbook/openebs_setup.yaml
-
 kubectl apply -f openebs_setup.yaml
 
 sleep 120
-
 kubectl get po --all-namespaces
 
 
