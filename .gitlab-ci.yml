@@ -24,14 +24,14 @@ openebs-deploy:
   dependencies:
     - packet-cluster
   script: 
-   - echo "deploying OpenEBS on Azure"
+   - echo "deploying OpenEBS on Packet"
    - ls packet
    - chmod 775 ./script/infra-setup
    - ./script/infra-setup
   
   artifacts:
     paths:
-      - packet/
+      - openebs-packet/
 
 percona-deploy:
   image: atulabhi/kops:v8
@@ -39,13 +39,13 @@ percona-deploy:
   dependencies:
     - openebs-deploy
   script: 
-   - echo "jobs-Azure-Started"
+   - echo "jobs-Packet-Started"
    - chmod 775 ./script/stateful-app-deploy
    - ./script/stateful-app-deploy
 
   artifacts:
     paths:
-      - azure/
+      - packet-percona/
 
 apps-aws-deploy-cstor:
   image: atulabhi/kops:v8
@@ -53,12 +53,12 @@ apps-aws-deploy-cstor:
   dependencies:
     - openebs-deploy
   script: 
-   - echo "jobs-AWS-Started"
+   - echo "jobs-packet-Started"
    - chmod 775 ./script/stateful-app-deploy-cstor
    - ./script/stateful-app-deploy-cstor
   artifacts:
     paths:
-      - aws-cstor/
+      - packet-cstor/
 
 Litmus-Chaos:
   image: atulabhi/kops:v8
@@ -66,9 +66,8 @@ Litmus-Chaos:
     - openebs-deploy
   stage: Litmus-chaos-testing
   script:
-   - echo " Introducing-Chaos"
-   - mkdir ~/.kube
-   - cp  azure/config ~/.kube/config 
+   - echo "Introducing-Chaos"
+   - cp -r packet/.kube/. ~/.kube/ 
    - kubectl create -f https://raw.githubusercontent.com/atulabhi/litmus/v0.7-RC1/apps/percona/chaos/openebs_volume_replica_failure/run_litmus_test.yaml
    - chmod 755 ./script/chaos
    - ./script/chaos
@@ -79,21 +78,19 @@ Litmus-Chaos-cstor:
     - openebs-deploy
   stage: Litmus-chaos-testing
   script:
-   - echo " Introducing-Chaos"
+   - echo "Introducing-Chaos"
    - mkdir ~/.kube
-   - cp  azure/config ~/.kube/config 
+   - cp -r packet/.kube/. ~/.kube/ 
    - kubectl create -f https://raw.githubusercontent.com/atulabhi/litmus/cstor-v0.7-RC1/apps/percona/chaos/openebs_cstor_target_failure/run_litmus_test.yaml
    - chmod +x ./script/chaoscstor
    - ./script/chaoscstor
 
-
-
-cleanup-azure:
+cleanup-packet:
   when: always
   image: atulabhi/kops:v8
   dependencies:
     - packet-cluster
   stage: cleanup
   script: 
-    - chmod 755 ./script/azure-cleanup
-    - ./script/azure-cleanup
+    - chmod 755 ./script/packet-cleanup
+    - ./script/packet-cleanup

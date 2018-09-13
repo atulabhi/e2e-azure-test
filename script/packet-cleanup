@@ -3,14 +3,13 @@
 set -e
 
 echo "Packet-Cleanup"
-mkdir /tmp/packet
-cp -r packet/cluster/. /tmp/packet/
-which ssh-keygen
-cp -r /openebs/e2e-packet/packet/ssh/. ~/.ssh/.
+mkdir ~/.kube ~/.ssh
+cp -r packet/.kube/. ~/.kube/
+cp -r packet/cluster/ssh/. ~/.ssh/
 export PACKET_API_TOKEN=$packet_api_token
 mkdir cluster && cd cluster #remove this with litmus
-git clone https://github.com/openebs/litmus.git
-cd litmus/k8s/packet/k8s-installer
+git clone https://github.com/chandankumar4/litmus.git
+cd litmus/k8s/packet/k8s-installer && git checkout packet
 sleep 30
 echo "--------------- deleting packet cluster --------------------"
 ansible-playbook delete_packet_cluster.yml -vvv
