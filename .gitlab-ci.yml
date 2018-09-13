@@ -31,7 +31,7 @@ openebs-deploy:
   
   artifacts:
     paths:
-      - azure/
+      - packet/
 
 percona-deploy:
   image: atulabhi/kops:v8
