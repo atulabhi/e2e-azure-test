@@ -6,13 +6,10 @@ stages:
   - cleanup
   - deploy
 azure-cluster:
-  image: atulabhi/kops:v8
+  image: chandankumar4/packet:v1
   stage: cluster-setup
   script: 
-    - pip install packet-python
     - mkdir -p ~/.ssh && ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
-    - cat ~/.ssh/id_rsa.pub
-    - sleep 20
     - echo -e "Host *\nStrictHostKeyChecking no" > ~/.ssh/config
     - chmod 755 ./script/packet
     - ./script/packet
