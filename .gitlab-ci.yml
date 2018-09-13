@@ -6,7 +6,7 @@ stages:
   - cleanup
   - deploy
 azure-cluster:
-  image: chandankumar4/packet:v1
+  image: chandankumar4/packet:v4
   stage: cluster-setup
   script: 
     - mkdir -p ~/.ssh && ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
