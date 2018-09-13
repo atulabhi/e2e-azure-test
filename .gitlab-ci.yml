@@ -16,7 +16,7 @@ azure-cluster:
 
   artifacts:
     paths:
-      - azoebs_aks_name/
+      - packet/
 
 openebs-deploy:
   image: atulabhi/kops:v8
