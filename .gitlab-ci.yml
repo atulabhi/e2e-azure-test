@@ -9,7 +9,6 @@ azure-cluster:
   image: atulabhi/kops:v8
   stage: cluster-setup
   script: 
-    - python -m pip install packet-python
     - pip install packet-python
     - mkdir -p ~/.ssh && ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
     - echo -e "Host *\nStrictHostKeyChecking no" > ~/.ssh/config
