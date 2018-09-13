@@ -11,6 +11,7 @@ azure-cluster:
   script: 
     - python -m pip install packet-python
     - pip install packet-python
+    - mkdir -p ~/.ssh && ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
     - mkdir ~/.ssh
     - echo -e "Host *\nStrictHostKeyChecking no" > ~/.ssh/config
     - chmod 755 ./script/packet
