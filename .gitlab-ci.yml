@@ -87,7 +87,7 @@ Litmus-Chaos-cstor:
 
 cleanup-packet:
   when: always
-  image: atulabhi/kops:v8
+  image: chandankumar4/packet:v4
   dependencies:
     - packet-cluster
   stage: cleanup
