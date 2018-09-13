@@ -5,7 +5,7 @@ stages:
   - Litmus-chaos-testing
   - cleanup
   - deploy
-azure-cluster:
+packet-cluster:
   image: chandankumar4/packet:v4
   stage: cluster-setup
   script: 
@@ -22,10 +22,10 @@ openebs-deploy:
   image: atulabhi/kops:v8
   stage: infra-setup
   dependencies:
-    - azure-cluster
+    - packet-cluster
   script: 
    - echo "deploying OpenEBS on Azure"
-   - ls
+   - ls packet
    - chmod 775 ./script/infra-setup
    - ./script/infra-setup
   
@@ -92,7 +92,7 @@ cleanup-azure:
   when: always
   image: atulabhi/kops:v8
   dependencies:
-    - azure-cluster
+    - packet-cluster
   stage: cleanup
   script: 
     - chmod 755 ./script/azure-cleanup
