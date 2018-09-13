@@ -1,10 +1,10 @@
 #!/bin/bash
-set -ex
+set -e
 
 echo "Deploying statefulapps"
 
 mkdir ~/.kube
-cp -r packet/.kube/. ~/.kube/
+cp -r /atulabhi/e2e-azure/packet/.kube/. ~/.kube/
 
 git clone https://github.com/atulabhi/litmus.git
 
