@@ -6,6 +6,8 @@ mkdir ~/.kube packet packet/cluster packet/cluster/ssh packet/.kube cluster && c
 export PACKET_API_TOKEN=$packet_api_token
 echo $PACKET_API_TOKEN
 which ssh-keygen
+python -V
+which git
 git clone https://github.com/chandankumar4/litmus.git
 cd litmus/k8s/packet/k8s-installer && git checkout packet
 pip list
