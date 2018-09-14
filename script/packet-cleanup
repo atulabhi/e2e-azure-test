@@ -11,6 +11,5 @@ export PACKET_API_TOKEN=$packet_api_token
 mkdir cluster && cd cluster
 git clone https://github.com/chandankumar4/litmus.git
 cd litmus/k8s/packet/k8s-installer && git checkout packet
-sleep 30
 echo "--------------- deleting packet cluster --------------------"
 ansible-playbook delete_packet_cluster.yml -vvv
