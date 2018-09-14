@@ -46,7 +46,7 @@ percona-deploy:
     paths:
       - packet-percona/
 
-apps-aws-deploy-cstor:
+apps-packet-deploy-cstor:
   image: atulabhi/kops:v8
   stage: stateful-apps-deploy
   dependencies:
