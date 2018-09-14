@@ -12,10 +12,10 @@ ansible-playbook create_packet_cluster.yml -vvv
 kubectl get nodes
 kubectl get pods --all-namespaces
 kubectl apply -f https://raw.githubusercontent.com/openebs/litmus/master/hack/rbac.yaml
-cp -r /tmp/packet/. packet/cluster/
-cat ~/.kube/config > packet/.kube/admin.conf
-cp -r ~/.kube/. packet/.kube/
-cp -r ~/.ssh/. packet/cluster/ssh
+cp -r /tmp/packet/. /atulabhi/e2e-azure/packet/cluster/
+cat ~/.kube/config > /atulabhi/e2e-azure/packet/.kube/admin.conf
+cp -r ~/.kube/. /atulabhi/e2e-azure/packet/.kube/
+cp -r ~/.ssh/. /atulabhi/e2e-azure/packet/cluster/ssh
 kubectl create configmap kubeconfig --from-file=/atulabhi/e2e-azure/packet/.kube/admin.conf -n litmus
 kubectl get pods --all-namespaces
 kubectl get nodes
