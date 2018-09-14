@@ -3,8 +3,9 @@ set -e
 
 echo "Deploying statefulapps"
 
-mkdir ~/.kube
-cp -r /atulabhi/e2e-azure/packet/.kube/. ~/.kube/
+mkdir ~/.kube packet-percona packet-percona/.kube
+cp -r openebs-packet/.kube/. ~/.kube/
+cp -r openebs-packet/.kube/. packet-percona/.kube/
 
 git clone https://github.com/atulabhi/litmus.git
 

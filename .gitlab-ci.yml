@@ -27,11 +27,10 @@ openebs-deploy:
    - echo "deploying OpenEBS on Packet"
    - ls packet
    - chmod 775 ./script/infra-setup
-   - ./script/infra-setup
-  
-  # artifacts:
-  #   paths:
-  #     - openebs-packet/
+   - ./script/infra-setup  
+  artifacts:
+    paths:
+      - openebs-packet/
 
 percona-deploy:
   image: atulabhi/kops:v8
@@ -43,9 +42,9 @@ percona-deploy:
    - chmod 775 ./script/stateful-app-deploy
    - ./script/stateful-app-deploy
 
-  # artifacts:
-  #   paths:
-  #     - packet-percona/
+  artifacts:
+    paths:
+      - packet-percona/
 
 apps-aws-deploy-cstor:
   image: atulabhi/kops:v8
@@ -56,9 +55,9 @@ apps-aws-deploy-cstor:
    - echo "jobs-packet-Started"
    - chmod 775 ./script/stateful-app-deploy-cstor
    - ./script/stateful-app-deploy-cstor
-  # artifacts:
-  #   paths:
-  #     - packet-cstor/
+  artifacts:
+    paths:
+      - packet-cstor/
 
 Litmus-Chaos:
   image: atulabhi/kops:v8
@@ -67,7 +66,7 @@ Litmus-Chaos:
   stage: Litmus-chaos-testing
   script:
    - echo "Introducing-Chaos"
-   - cp -r packet/.kube/. ~/.kube/ 
+   - mkdir ~/.kube && cp -r openebs-packet/.kube/. ~/.kube/ 
    - kubectl create -f https://raw.githubusercontent.com/atulabhi/litmus/v0.7-RC1/apps/percona/chaos/openebs_volume_replica_failure/run_litmus_test.yaml
    - chmod 755 ./script/chaos
    - ./script/chaos
@@ -79,8 +78,7 @@ Litmus-Chaos-cstor:
   stage: Litmus-chaos-testing
   script:
    - echo "Introducing-Chaos"
-   - mkdir ~/.kube
-   - cp -r packet/.kube/. ~/.kube/ 
+   - mkdir ~/.kube && cp -r openebs-packet/.kube/. ~/.kube/ 
    - kubectl create -f https://raw.githubusercontent.com/atulabhi/litmus/cstor-v0.7-RC1/apps/percona/chaos/openebs_cstor_target_failure/run_litmus_test.yaml
    - chmod +x ./script/chaoscstor
    - ./script/chaoscstor
